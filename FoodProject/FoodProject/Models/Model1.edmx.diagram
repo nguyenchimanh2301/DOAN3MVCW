@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eec7d2a42bfd474ba15959d461e2c6a2" Name="Diagram1">
+        <EntityTypeShape EntityType="DOAN3Model.Dathang" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.Donhang" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.KhachHang" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.LoaiSp" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.Nhacungcap" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.NHANVIEN" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.SanPham" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.sysdiagram" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DOAN3Model.Userss" Width="1.5" PointX="2.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="DOAN3Model.FK__Dathang__NV_id__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DOAN3Model.FK__Dathang__sanpham__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="DOAN3Model.FK__Donhang__Khachha__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DOAN3Model.FK__Donhang__sanpham__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DOAN3Model.FK__SanPhams__Loaisp__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="DOAN3Model.FK_SanPhams_Nhacungcap" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DOAN3Model.TEST" Width="1.5" PointX="8.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

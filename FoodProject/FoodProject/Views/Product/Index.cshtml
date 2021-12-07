@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular-1.8.2/angular.min.js"></script>
+
+<script src="~/Scripts/AngularScript/home.js"></script>
+
+
+
+<section class="our_latest_product">
+    
+        <div class="container">
+
+            <div class="s_m_title">
+                <h2>Sản Phẩm Khuyến Mại</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3 l_product_item" ng-repeat="item in listLoaiSP">
+                    <div class="l_p_img">
+                        <a href="/Detail/DetailPage/?MaSP={{item.sanpham_id}}">
+                            <img src=/{{item.picture}} alt="" class="img-responsive">
+                        </a>
+                        <div class="l_p_text">
+                            <ul>
+                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                <li><a class="add_cart_btn" href="#" ng-click="addToCart(item)">Thêm Giỏ</a></li>
+                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                            </ul>
+                            <h4>{{item.sanpham_name}}</h4>
+                            <h5><del>$45.50</del>{{item.gia}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="s_m_title">
+                <h2>Sản Phẩm HOT</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3 l_product_item" ng-repeat="item in listLoaiSPH">
+                    <div class="l_p_img">
+                        <a href="/Detail/DetailPage/?MaSP={{item.sanpham_id}}">
+                            <img src=/{{item.picture}} alt="" class="img-responsive">
+                        </a>
+                        <div class="l_p_text">
+                            <ul>
+                                <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                <li><a class="add_cart_btn" href="#" ng-click="addToCart(item)">Thêm Giỏ</a></li>
+                                <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                            </ul>
+                            <h4>{{item.sanpham_name}}</h4>
+                            <h5><del>$45.50</del>{{item.gia}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

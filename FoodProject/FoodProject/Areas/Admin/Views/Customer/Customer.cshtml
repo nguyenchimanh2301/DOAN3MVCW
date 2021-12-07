@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+
+<script src="~/Areas/Admin/AngularScipt/CrudService.js"></script>
+<script src="~/Areas/Admin/AngularScipt/Customer.js"></script>
+
+
+
+
+
+<button class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-plus"></i></button>
+
+
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">DANH SÁCH</h1>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+
+    <div ng-app="AdminSPApp" ng-controller="CustomerCtrl">
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                       aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div ng-init="LoadKh()"></div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTabl" width="100%">
+
+                    <thead>
+                        <tr>
+                            <th>Tên Khách hàng</th>
+                            <th>Giới tính</th>
+                            <th>Ngày sinh </th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody dir-paginate="item in listLoaiSP |filter : searchText|  itemsPerPage: 10| orderBy:'Khachhang_id'">
+                        <tr>
+                            <td>{{item.Khachhang_name}}</td>
+                            <td>{{item.Gioitinh}}</td>
+                            <td>{{item.Ngaysinh}}</td>
+                            <td>{{item.Diachi}}</td>
+                            <td>{{item.Sodt}}</td>
+                            <td>
+                                <span>
+                                    <span id="save" class="btn btn-danger margin-right-btn"
+                                          ng-click="Deletekh(item)">
+                                        <i class="fas fa fa-trash"></i>
+                                    </span>
+                                </span>
+                                <span id="save" class="btn btn-primary margin-right-btn" ng-click="GetSPID(item)" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-edit"></i></span>
+                            </td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+                <dir-pagination-controls></dir-pagination-controls>
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Student</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+
+                    <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Khách Hàng id</label>
+                                    <div class="col-md-7"> <input type="text" id="idtenloai" class="form-control" name="nametenloai" ng-model="Khachhang_id" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Tên Khách Hàng</label>
+                                    <div class="col-md-7"> <input type="text" id="idtenloai" class="form-control" name="nametenloai" ng-model="Khachhang_name" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">giới tính</label>
+                                    <div class="col-md-7"> <input type="text" id="idSoSP" class="form-control" name="nameSoSP" ng-model="Gioitinh" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17"> ngày sinh</label>
+                                    <div class="col-md-7"> <input type="date" id="idgv" class="form-control" name="namegvid" ng-model="Ngaysinh" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Địa chỉ</label>
+                                    <div class="col-md-7"> <input type="text" id="idgv" class="form-control" name="namegvid" ng-model="Diachi" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Số điện thoại</label>
+                                    <div class="col-md-7"> <input type="text" id="idgv" class="form-control" name="namegvid" ng-model="Sodt" /> </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4"> </div>
+                                    <div class="col-md-7">
+                                        <span id="save" class="btn btn-success margin-right-btn" ng-click="SaveUpdate()">
+                                            <i class="icon-save"></i> {{btnText}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

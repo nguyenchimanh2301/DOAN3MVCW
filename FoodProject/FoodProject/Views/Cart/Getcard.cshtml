@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Getcard";
+    Layout = "~/Views/Shared/_Layoutdetail.cshtml";
+}
+
+
+<script src="~/Scripts/AngularScript/cart.js"></script>
+
+<div ng-app="DetailApp" ng-controller="CartCtrl">
+    <div ng-init="LoadCart()">
+       
+            <section class="shopping_cart_area p_100">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="cart_product_list">
+                                <h3 class="cart_single_title">Discount Cupon</h3>
+                                <div class="table-responsive-md">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">STT</th>
+                                                <th scope="col">Sản phẩm</th>
+                                                <th scope="col">ảnh</th>
+                                                <th scope="col">giá</th>
+                                                <th scope="col">SỐ lượng</th>
+                                                <th scope="col">Tổng </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in listSP">
+                                                <th scope="row">
+                                                    1
+                                                </th>
+                                                <td><p>{{item.sanpham_name}}</p></td>
+                                                <td>
+                                                    <img src="/{{item.picture}}" style="width:50px; height:50px " alt="">
+                                                </td>
+                                                <td><p>{{item.gia}}</p></td>
+                                                <td> <button ng-click="Giam(item)">></button>
+                                                   <input class="cart-plus-minus-box" value="{{item.quantity}}" type="text">                                      
+                                                <button ng-click="Tang(item)">></button>
+                                                </td>
+
+                                                <td><p>{{item.gia * item.quantity}}</p></td>
+                                                <td><p class="btn-danger" ng-click="remove(item)">Xóa</p></td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="calculate_shoping_area">
+                                <h3 class="cart_single_title">Calculate Shoping <span><i class="icon_minus-06"></i></span></h3>
+                                <div class="calculate_shop_inner">
+                                    <form class="calculate_shoping_form row" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                                        <div class="form-group col-lg-12">
+                                            <select class="selectpicker">
+                                                <option>Vietnamese (VIE)</option>
+                                                <option>United State America (USA)</option>
+                                                <option>United State America (USA)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <input type="text" class="form-control" id="state" name="state" placeholder="Tỉnh/Thành phô">
+                                        </div>
+                                        <div class="form-group col-lg-6">
+                                            <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode / Zip">
+                                        </div>
+                                        <div class="form-group col-lg-12">
+                                            <button type="submit" value="submit" class="btn submit_btn form-control"> cập nhật tổng thể</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="total_amount_area">
+                                <div class="cupon_box">
+                                    <h3 class="cart_single_title">MÃ GIÃM GIÁ</h3>
+                                    <div class="cupon_box_inner">
+                                        <input type="text" placeholder="Nhập mã của bạn tại đây">
+                                        <button type="submit" class="btn btn-primary subs_btn">Áp dụng mã</button>
+                                    </div>
+                                </div>
+                                <div class="cart_totals">
+                                    <h3 class="cart_single_title">PHIẾU GIẢM GIÁ</h3>
+                                    <div class="cart_total_inner">
+                                        <ul>
+                                            <li><a href="#"><span></span> $400.00</a></li>
+                                            <li><a href="#"><span>Shipping</span> Free</a></li>
+                                            <li><a href="#"><span>Totals</span> $400.00</a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary update_btn" ng-click="reloadcart()">Cập nhật giỏ hàng</button>
+                                    <button type="submit" class="btn btn-primary checkout_btn">tiến hành kiểm tra</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>

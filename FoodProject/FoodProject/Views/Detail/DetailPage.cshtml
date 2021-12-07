@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "DetailPage";
+    Layout = "~/Views/Shared/_Layoutdetail.cshtml";
+}
+
+<script src="~/Scripts/AngularScript/chitiet.js"></script>
+
+<div ng-app="DetailApp">
+    <div ng-controller="DetailCtrl">
+        <div ng-init="chitiet('@ViewBag.MaSP')"></div>
+        <div>
+            <section class="categories_banner_area">
+                <div class="container">
+                    <div class="c_banner_inner">
+                        <h3>simple product</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li class="current"><a href="#">Simple Product</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="product_details_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="product_details_slider">
+                                <div id="product_slider" class="rev_slider" data-version="5.3.1.6">
+                                    <div><<img src=/{{product.picture}} alt="" style="height:300px"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="product_details_text">
+                                <h2>{{product.sanpham_name}}</h2>
+                                <ul class="p_rating">
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                </ul>
+                                <div class="add_review">
+                                    <a href="#">5 Reviews</a>
+                                    <a href="#">Add your review</a>
+                                </div>
+                                <h4>Mã sản phẩm : <span>{{product.sanpham_id}}</span></h4>
+                                <h4>{{product.gia}} VNĐ</h4>
+                                <p></p>
+
+
+                                <div class="quantity">
+                                    <div class="custom">
+                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp``);&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="icon_minus-06"></i></button>
+                                        <input type="text" name="qty" id="sst" maxlength="12" value="01" title="Quantity:" class="input-text qty">
+                                        <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;" class="increase items-count" type="button"><i class="icon_plus"></i></button>
+                                    </div>
+                                    <a class="add_cart_btn" href="#" ng-click="addToCart(product)">Thêm vào giỏ hàng</a>
+                                </div>
+                                <div class="shareing_icon">
+                                    <h5>share :</h5>
+                                    <ul>
+                                        <li><a href="#"><i class="social_facebook"></i></a></li>
+                                        <li><a href="#"><i class="social_twitter"></i></a></li>
+                                        <li><a href="#"><i class="social_pinterest"></i></a></li>
+                                        <li><a href="#"><i class="social_instagram"></i></a></li>
+                                        <li><a href="#"><i class="social_youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section class="related_product_area">
+                <div class="container">
+                    <div class="related_product_inner">
+                        <h2 class="single_c_title">SẢN PHẨM CÙNG LOẠI</h2>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6" ng-repeat="product in product.listSPhot">
+                                <div class="l_product_item">
+                                    <div class="l_p_img">
+                                        <img class="img-fluid" src="/{{product.picture}}" alt="">
+                                        <h5 class="sale">Sale</h5>
+                                    </div>
+                                    <div class="l_p_text">
+                                        <ul>
+                                            <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a></li>
+                                            <li><a class="add_cart_btn" href="#" ng-click="addToCart(product)">Add To Cart</a></li>
+                                            <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
+                                        </ul>
+                                        <h4>{{product.sanpham_name}}</h4>
+                                        <h5>{{product.gia}} VNĐ</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <nav aria-label="Page navigation example" class="pagination_area">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                <li class="page-item next"><a class="page-link" href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+             

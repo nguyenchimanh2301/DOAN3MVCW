@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DOAN3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dathang">
+    <Key>
+      <PropertyRef Name="Hoadon_id" />
+    </Key>
+    <Property Name="Hoadon_id" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="sanpham_id" Type="varchar" MaxLength="50" />
+    <Property Name="Khachhang_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="NV_id" Type="varchar" MaxLength="200" />
+    <Property Name="ngaydathang" Type="date" />
+  </EntityType>
+  <EntityType Name="Donhang">
+    <Key>
+      <PropertyRef Name="Hoadon_id" />
+    </Key>
+    <Property Name="Hoadon_id" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="sanpham_id" Type="varchar" MaxLength="50" />
+    <Property Name="Khachhang_id" Type="varchar" MaxLength="200" />
+    <Property Name="Khachhang_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="sanpham_name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="soluong" Type="int" Nullable="false" />
+    <Property Name="giaban" Type="int" />
+    <Property Name="tongtien" Type="int" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="Khachhang_id" />
+    </Key>
+    <Property Name="Khachhang_id" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Khachhang_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Gioitinh" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ngaysinh" Type="date" Nullable="false" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Sodt" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoaiSp">
+    <Key>
+      <PropertyRef Name="Loaisp_id" />
+    </Key>
+    <Property Name="Loaisp_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Loaisp_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="mota" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Nhacungcap">
+    <Key>
+      <PropertyRef Name="Nhacungcap_id" />
+    </Key>
+    <Property Name="Nhacungcap_id" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Nhacungcap_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Diachi" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Sodt" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="NV_id" />
+    </Key>
+    <Property Name="NV_id" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="NV_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="gioitinh" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="diachi" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="sdt" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="SanPhams">
+    <Key>
+      <PropertyRef Name="sanpham_id" />
+    </Key>
+    <Property Name="sanpham_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Loaisp_id" Type="varchar" MaxLength="50" />
+    <Property Name="sanpham_name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="gia" Type="int" />
+    <Property Name="Nhacungcap_id" Type="varchar" MaxLength="200" />
+    <Property Name="Soluong" Type="int" />
+    <Property Name="picture" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Userss">
+    <Key>
+      <PropertyRef Name="Users_id" />
+    </Key>
+    <Property Name="Users_id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Passwords" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Dathang__NV_id__46E78A0C">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="Dathang" Type="Self.Dathang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="NV_id" />
+      </Principal>
+      <Dependent Role="Dathang">
+        <PropertyRef Name="NV_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Dathang__sanpham__45F365D3">
+    <End Role="SanPhams" Type="Self.SanPhams" Multiplicity="0..1" />
+    <End Role="Dathang" Type="Self.Dathang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPhams">
+        <PropertyRef Name="sanpham_id" />
+      </Principal>
+      <Dependent Role="Dathang">
+        <PropertyRef Name="sanpham_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Donhang__Khachha__412EB0B6">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="Donhang" Type="Self.Donhang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="Khachhang_id" />
+      </Principal>
+      <Dependent Role="Donhang">
+        <PropertyRef Name="Khachhang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Donhang__sanpham__403A8C7D">
+    <End Role="SanPhams" Type="Self.SanPhams" Multiplicity="0..1" />
+    <End Role="Donhang" Type="Self.Donhang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPhams">
+        <PropertyRef Name="sanpham_id" />
+      </Principal>
+      <Dependent Role="Donhang">
+        <PropertyRef Name="sanpham_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SanPhams__Loaisp__3A81B327">
+    <End Role="LoaiSp" Type="Self.LoaiSp" Multiplicity="0..1" />
+    <End Role="SanPhams" Type="Self.SanPhams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSp">
+        <PropertyRef Name="Loaisp_id" />
+      </Principal>
+      <Dependent Role="SanPhams">
+        <PropertyRef Name="Loaisp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPhams_Nhacungcap">
+    <End Role="Nhacungcap" Type="Self.Nhacungcap" Multiplicity="0..1" />
+    <End Role="SanPhams" Type="Self.SanPhams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nhacungcap">
+        <PropertyRef Name="Nhacungcap_id" />
+      </Principal>
+      <Dependent Role="SanPhams">
+        <PropertyRef Name="Nhacungcap_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DOAN3ModelStoreContainer">
+    <EntitySet Name="Dathang" EntityType="Self.Dathang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Donhang" EntityType="Self.Donhang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiSp" EntityType="Self.LoaiSp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nhacungcap" EntityType="Self.Nhacungcap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPhams" EntityType="Self.SanPhams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Userss" EntityType="Self.Userss" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Dathang__NV_id__46E78A0C" Association="Self.FK__Dathang__NV_id__46E78A0C">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="Dathang" EntitySet="Dathang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Dathang__sanpham__45F365D3" Association="Self.FK__Dathang__sanpham__45F365D3">
+      <End Role="SanPhams" EntitySet="SanPhams" />
+      <End Role="Dathang" EntitySet="Dathang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Donhang__Khachha__412EB0B6" Association="Self.FK__Donhang__Khachha__412EB0B6">
+      <End Role="KhachHang" EntitySet="KhachHang" />
+      <End Role="Donhang" EntitySet="Donhang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Donhang__sanpham__403A8C7D" Association="Self.FK__Donhang__sanpham__403A8C7D">
+      <End Role="SanPhams" EntitySet="SanPhams" />
+      <End Role="Donhang" EntitySet="Donhang" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SanPhams__Loaisp__3A81B327" Association="Self.FK__SanPhams__Loaisp__3A81B327">
+      <End Role="LoaiSp" EntitySet="LoaiSp" />
+      <End Role="SanPhams" EntitySet="SanPhams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPhams_Nhacungcap" Association="Self.FK_SanPhams_Nhacungcap">
+      <End Role="Nhacungcap" EntitySet="Nhacungcap" />
+      <End Role="SanPhams" EntitySet="SanPhams" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

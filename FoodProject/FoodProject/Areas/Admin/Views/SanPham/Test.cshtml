@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<script src="~/Areas/Admin/AngularScipt/CrudService.js"></script>
+
+
+<script src="~/Areas/Admin/AngularScipt/ProductAdd.js"></script>
+
+
+
+
+
+<button class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-plus"></i></button>
+
+
+<div ng-app="AdminSPApp" ng-controller="SanPhamCtrl">
+
+    <div ng-init="LoadLoaiSP()"></div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+        </div>
+        <div class="container-fluid">
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">LOẠI SẢN PHẨM</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+
+
+
+                                    
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">ID</label>
+                                        <div class="col-md-7"> <input type="text" id="TenSP" class="form-control" name="namegvid"  ng-model="idsp" /> </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">ảnh</label>
+                                        <div class="col-md-7"> <input type="file" id="file" class="form-control" name="namegvid" /> </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"> </div>
+                                        <div class="col-md-7">
+                                            <span id="save" class="btn btn-success margin-right-btn" ng-click="AjaxAddSanPham()">
+                                                <span>Thêm mới</span>
+                                                <i class="icon-save"></i> {{btntxt}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                           aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                        <thead>
+                            <tr>
+
+                                <th>Mã sản phẩm</th>
+                        
+                                <th>ảnh </th>
+                            
+                              
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody dir-paginate="item in listLoaiSP |filter: searchText | itemsPerPage: 10 | orderBy:'sanpham_id'">
+                            <tr>
+                                <td>{{item.id}}</td>
+
+                            
+                                <td><img src="/{{item.anh}}" style="height:50px;width:50px"></td>
+                                
+                                <td>
+                                    <span>
+                                        <span id="save" class="btn btn-danger margin-right-btn"
+                                              ng-click="DeletteSP(item)">
+                                            <i class="fas fa fa-trash"></i>
+                                        </span>
+                                    </span>
+                                    <span id="save" class="btn btn-primary margin-right-btn" ng-click="GetSPID(item)" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-edit"></i></span>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <dir-pagination-controls></dir-pagination-controls>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

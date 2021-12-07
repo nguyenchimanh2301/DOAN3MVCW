@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "Categori";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+
+<script src="~/Areas/Admin/AngularScipt/CrudService.js"></script>
+
+<script src="~/Areas/Admin/AngularScipt/Categori.js"></script>
+
+
+
+
+
+
+<button class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-plus"></i></button>
+
+
+<div ng-app="AdminSPApp" ng-controller="SanPhamCtrl">
+    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                   aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+            </div>
+
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">LOẠI SẢN PHẨM</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">Mã Loại Sản Phẩm</label>
+                                        <div class="col-md-7"> <input type="text" id="idtenloai" class="form-control" name="nametenloai" ng-model="Loaisp_id" /> </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">Tên Loại Sản Phẩm</label>
+                                        <div class="col-md-7"> <input type="text" id="idSoSP" class="form-control" name="nameSoSP" ng-model="Loaisp_name" /> </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">Mô tả </label>
+                                        <div class="col-md-7"> <input type="text" id="idgv" class="form-control" name="namegvid" ng-model="mota" /> </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4"> </div>
+                                        <div class="col-md-7">
+                                            <span id="save" class="btn btn-success margin-right-btn" ng-click="Savedt()">
+                                                <i class="icon-save"></i> {{btntxt}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-init="getct()"></div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTabl" width="100%" cellspacing="0">
+
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã Loại sản phẩm</th>
+                                <th>Tên loại sản phẩm</th>
+                                <th>Mô tả </th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody dir-paginate="item in listLoaiSP|filter:searchText |  itemsPerPage: 10| orderBy:'Loaisp_id'">
+                            <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{item.Loaisp_id}}</td>
+                                <td>{{item.Loaisp_name}}</td>
+                                <td>{{item.mota}}</td>
+                                <td>
+                                    <span>
+                                        <span c  id="save" class="btn btn-danger margin-right-btn "
+                                              ng-click="DeletteLSP(item)">
+                                            <i class="fas fa fa-trash"></i>
+                                        </span>
+                                    </span>
+                                    <span id="save" class="btn btn-primary margin-right-btn" ng-click="GetLSPID(item)" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-edit"></i></span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <dir-pagination-controls></dir-pagination-controls>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
